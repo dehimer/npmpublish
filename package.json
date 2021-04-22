@@ -1,0 +1,23 @@
+{
+  "name": "npmpublish",
+  "version": "0.0.1",
+  "description": "Packate for testing of prepulishOnly hook",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dehimer/npmpublish.git"
+  },
+  "keywords": [
+    "npm",
+    "publish"
+  ],
+  "author": "Denis Novikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dehimer/npmpublish/issues"
+  },
+  "homepage": "https://github.com/dehimer/npmpublish#readme"
+}
