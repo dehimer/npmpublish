@@ -4,11 +4,13 @@ const semver = require('semver');
 const path = require('path');
 
 module.exports = (packagePath) => {
+  console.log('__dirname');
+  console.log(__dirname);
   const packageJsonPath = path.resolve(packagePath, 'package.json');
   console.log(`Increase version in ${packageJsonPath}`);
 
   if (fs.existsSync(packageJsonPath)) {
-    const package = require('../package.json');
+    const package = require('../mobile/package.json');
 
     const currentVersion = package.version;
     console.log(`currentVersion: ${currentVersion}`);
@@ -32,10 +34,14 @@ module.exports = (packagePath) => {
       fs.writeFileSync('./package.json', JSON.stringify(package, null, 2));
 
       console.log('Version updated', currentVersion, '=>', newVersion);
+
+      return newVersion;
     } else {
       console.error('Version Incorrect')
+      return null;
     }
   } else {
     console.error(`Not found: ${packageJsonPath}`);
+    return null;
   }
 }

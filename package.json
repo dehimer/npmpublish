@@ -20,5 +20,6 @@
     "url": "https://github.com/dehimer/npmpublish/issues"
   },
   "homepage": "https://github.com/dehimer/npmpublish#readme",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {}
 }
