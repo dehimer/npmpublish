@@ -1,14 +1,18 @@
 {
   "name": "mobilenpmpublish",
-  "version": "0.0.1",
+  "version": "0.0.12-beta.2",
   "description": "MNP",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "node inject.ts"
   },
   "author": "Denis Novikov",
   "license": "ISC",
   "dependencies": {
     "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "semver": "^7.3.5"
   }
 }
