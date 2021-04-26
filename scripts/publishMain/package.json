@@ -15,5 +15,9 @@
     "rimraf": "^3.0.2",
     "semver": "^7.3.5",
     "yargs": "^16.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/dehimer/npmpublish/issues"
+  },
+  "homepage": "https://github.com/dehimer/npmpublish#readme"
 }
