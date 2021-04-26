@@ -24,31 +24,35 @@ module.exports = async () => {
     console.log(`forcedMainVersion: ${forcedMainVersion}`);
     console.log(`forcedDependencyVersion: ${forcedDependencyVersion}`);
 
-    const nextCommonVersion = publishDependency({
+    const nextDepVersion = await publishDependency({
         mainPath: mainPath,
         depPath: depPath,
         depName: depName,
         depVersion: forcedDependencyVersion
     })
 
-    if (!nextCommonVersion) {
+    if (!nextDepVersion) {
         return;
     }
 
+    console.log('nextDepVersion:');
+    console.log(nextDepVersion);
+
     // set new common version to mobile
-    const mainPackagePath = path.resolve('../', mainPath, `package.json`);
-    console.log(`Increase ${depName} version to ${nextCommonVersion} in ${mainPackagePath}`);
+    const absoluteMainPath = path.resolve(__dirname, '../../', mainPath);
+    const mainPackagePath = path.resolve(absoluteMainPath, `package.json`);
+    console.log(`Increase ${depName} version to ${nextDepVersion} in ${mainPackagePath}`);
     const mainPackage = require(mainPackagePath);
-    mainPackagePath.dependencies[depName] = nextCommonVersion;
+    mainPackage.dependencies[depName] = nextDepVersion;
     fs.writeFileSync(mainPackagePath, JSON.stringify(mainPackage, null, 2));
 
     // increment mobile version
-    increaseVersion(mainPath, forcedMainVersion);
+    increaseVersion(absoluteMainPath, forcedMainVersion);
 
     // publish mobile
     await new Promise((resolve, reject) => {
         exec('npm publish', {
-            cwd: mainPath
+            cwd: absoluteMainPath
         }, (error, stdout, stderr) => {
             if (error) {
                 console.warn(error);
