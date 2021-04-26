@@ -1,15 +1,13 @@
 {
-  "name": "incpublish",
-  "version": "1.0.1",
-  "description": "",
+  "name": "incdepnpmpublish",
+  "version": "1.0.0",
+  "description": "Increment dependency and publish",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Denis Novikov (aka dehimer)",
   "license": "ISC",
-  "devDependencies": {
-    "local-package-publisher": "^1.0.4"
-  },
   "dependencies": {
     "copy-dir": "^1.3.0",
     "package-local-publisher": "^0.0.1-develop-397c505e",
