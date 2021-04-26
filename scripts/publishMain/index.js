@@ -1,5 +1,5 @@
 const fs = require('fs');
-const path = require('fs');
+const path = require('path');
 const { exec } = require('child_process');
 const yargs = require('yargs');
 
