@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+commonnpmpublish@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/commonnpmpublish/-/commonnpmpublish-0.0.8.tgz#f351ac31ec63979a1d6130dc9246df5316ee70ec"
+  integrity sha512-icZTfPwj26KR68PywUO2rNfcukXSAH5/3ehefnIPMS4OfJMcPRA/bV+qwILqK/TxHS3zCLU6Pd4f6gUmz/O6GA==
+  dependencies:
+    underscore "^1.13.1"
+
 copy-dir@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/copy-dir/-/copy-dir-1.3.0.tgz#8c65130e11d8313a6ac2c0578e4c6c6f70b456ba"
@@ -31,3 +38,8 @@ react@^17.0.2:
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
+
+underscore@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.1.tgz#0c1c6bd2df54b6b69f2314066d65b6cde6fcf9d1"
+  integrity sha512-hzSoAVtJF+3ZtiFX0VgfFPHEDRm7Y/QPjGyNo4TVdnDTdft3tr8hEkD25a1jC+TjTuE7tkHGKkhwCgs9dgBB2g==
