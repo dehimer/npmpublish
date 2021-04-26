@@ -19,7 +19,7 @@ const DEPENDENCY_NAME = 'commonnpmpublish';
     console.log('argv');
     console.log(argv);
     const nextCommonVersion = publishDependency({
-        depPath: DEPENDENCY_PATH,
+        depPath: depPath,
     })
 
     if (!nextCommonVersion) {
@@ -27,17 +27,17 @@ const DEPENDENCY_NAME = 'commonnpmpublish';
     }
 
     // set new common version to mobile
-    const mobilePackage = require(`../${MAIN_PATH}/package.json`);
-    mobilePackage.dependencies[DEPENDENCY_NAME] = nextCommonVersion;
-    fs.writeFileSync(`../${MAIN_PATH}/package.json`, JSON.stringify(mobilePackage, null, 2));
+    const mobilePackage = require(`../${mainPath}/package.json`);
+    mobilePackage.dependencies[depName] = nextCommonVersion;
+    fs.writeFileSync(`../${mainPath}/package.json`, JSON.stringify(mobilePackage, null, 2));
 
     // increment mobile version
-    increaseVersion(MAIN_PATH);
+    increaseVersion(mainPath);
 
     // publish mobile
     await new Promise((resolve, reject) => {
         exec('npm publish', {
-            cwd: MAIN_PATH
+            cwd: mainPath
         }, (error, stdout, stderr) => {
             if (error) {
                 console.warn(error);
