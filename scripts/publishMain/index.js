@@ -9,7 +9,7 @@ const MAIN_PATH = '../mobile';
 const DEPENDENCY_PATH = '../common';
 const DEPENDENCY_NAME = 'commonnpmpublish';
 
-(async () => {
+module.exports = async () => {
     const argv = yargs.argv;
 
     const mainPath = MAIN_PATH || argv.mainPath;
@@ -48,4 +48,4 @@ const DEPENDENCY_NAME = 'commonnpmpublish';
             resolve(stdout? stdout : stderr);
         });
     })
-})();
+};

@@ -1,5 +1,5 @@
 const { exec } = require('child_process');
-const rimraf = require("rimraf");
+const rimraf = require('rimraf');
 const copydir = require('copy-dir');
 const replaceInFile = require('replace-in-file');
 
