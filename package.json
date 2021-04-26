@@ -1,6 +1,6 @@
 {
   "name": "@dehimer/npmpublish",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Packate for testing of prepulishOnly hook",
   "main": "web/index.ts",
   "scripts": {
