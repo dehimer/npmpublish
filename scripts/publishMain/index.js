@@ -36,10 +36,11 @@ module.exports = async () => {
     }
 
     // set new common version to mobile
-    const mobilePackagePath = path.resolve('../', mainPath, `package.json`);
-    const mobilePackage = require(mobilePackagePath);
-    mobilePackage.dependencies[depName] = nextCommonVersion;
-    fs.writeFileSync(mobilePackagePath, JSON.stringify(mobilePackage, null, 2));
+    const mainPackagePath = path.resolve('../', mainPath, `package.json`);
+    console.log(`Increase ${depName} version to ${nextCommonVersion} in ${mainPackagePath}`);
+    const mainPackage = require(mainPackagePath);
+    mainPackagePath.dependencies[depName] = nextCommonVersion;
+    fs.writeFileSync(mainPackagePath, JSON.stringify(mainPackage, null, 2));
 
     // increment mobile version
     increaseVersion(mainPath, forcedMainVersion);
