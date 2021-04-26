@@ -1,6 +1,6 @@
 {
   "name": "incdepnpmpublish",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "Increment dependency and publish",
   "main": "index.js",
   "scripts": {

@@ -37,8 +37,6 @@ module.exports = async ({
         files: `${PREBUBLISH_PATH}/**`,
         from: regexp,
         to: (match) => {
-            console.log('match');
-            console.log(match);
             return match.replace(depName, `${mainPath}/platform`).replace('.injected', '');
         },
         countMatches: true

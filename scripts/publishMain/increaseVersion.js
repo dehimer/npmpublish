@@ -1,4 +1,3 @@
-console.log('EAT BANANA');
 const fs = require('fs');
 const semver = require('semver');
 const path = require('path');

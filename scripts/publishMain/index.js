@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('fs');
 const { exec } = require('child_process');
 const yargs = require('yargs');
 
@@ -12,9 +13,9 @@ const DEPENDENCY_NAME = 'commonnpmpublish';
 module.exports = async () => {
     const argv = yargs.argv;
 
-    const mainPath = MAIN_PATH || argv.mainPath;
-    const depPath = DEPENDENCY_PATH || argv.depPath;
-    const depName = DEPENDENCY_NAME || argv.depName;
+    const mainPath = argv.mainPath || MAIN_PATH;
+    const depPath = argv.depPath || DEPENDENCY_PATH;
+    const depName = argv.depName || DEPENDENCY_NAME;
     const forcedMainVersion = typeof argv.mainVersion === 'string' ? argv.mainVersion : null;
     const forcedDependencyVersion = typeof argv.depVersion === 'string' ? argv.depVersion : null;
 
@@ -35,9 +36,10 @@ module.exports = async () => {
     }
 
     // set new common version to mobile
-    const mobilePackage = require(`../${mainPath}/package.json`);
+    const mobilePackagePath = path.resolve('../', mainPath, `package.json`);
+    const mobilePackage = require(mobilePackagePath);
     mobilePackage.dependencies[depName] = nextCommonVersion;
-    fs.writeFileSync(`../${mainPath}/package.json`, JSON.stringify(mobilePackage, null, 2));
+    fs.writeFileSync(mobilePackagePath, JSON.stringify(mobilePackage, null, 2));
 
     // increment mobile version
     increaseVersion(mainPath, forcedMainVersion);
