@@ -14,6 +14,9 @@ const COMMON_PATH = '../common';
 const COMMON_PREBUBLISH_PATH = '../common-prepublish';
 const MOBILE_PATH = '../mobile';
 
+console.log('__dirname');
+console.log(__dirname);
+
 (async () => {
     // do copy to temp folder
     copydir.sync(COMMON_PATH, COMMON_PREBUBLISH_PATH, {
@@ -58,7 +61,9 @@ const MOBILE_PATH = '../mobile';
             });
         });
     } catch (e) {
-        console.log('Error happens on common publication');
+        console.warn('Error happens on common publication');
+        console.warn('Probably you are not logged in NPM account');
+        console.warn('Use "npm login" command before next attempt to run');
         // remove temp folder
         rimraf(COMMON_PREBUBLISH_PATH, () => console.log(`Deleted ${COMMON_PREBUBLISH_PATH}`));
         return;
@@ -71,9 +76,9 @@ const MOBILE_PATH = '../mobile';
     increaseVersion(COMMON_PATH, nextCommonVersion);
 
     // set new common version to mobile
-    const mobilePackage = require(`${MOBILE_PATH}/package.json`);
+    const mobilePackage = require(`../${MOBILE_PATH}/package.json`);
     mobilePackage.dependencies.commonnpmpublish = nextCommonVersion;
-    fs.writeFileSync(`${MOBILE_PATH}/package.json`, JSON.stringify(mobilePackage, null, 2));
+    fs.writeFileSync(`../${MOBILE_PATH}/package.json`, JSON.stringify(mobilePackage, null, 2));
 
     // increment mobile version
     increaseVersion(MOBILE_PATH);
