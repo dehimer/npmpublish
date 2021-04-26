@@ -1,8 +1,9 @@
-NPM PUBLISH package needed to replace standard npm publish command
+NPM PUBLISH package needed to replace standard npm publish command with autoreplace of injected aliases
 
 It's extends base functionality by nex features:
 - publishing dependency package that placed near to current package
 - autoincrement version dependency version
+- find and replace [depPath]/[pathToReplace]/.injected path to main [mainPath] 
 - publishing dependency to npm
 - increment dependency version in main package
 - increment main package version
