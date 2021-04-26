@@ -1,7 +1,7 @@
 {
   "name": "@dehimer/npmpublish",
   "version": "0.0.2",
-  "description": "Packate for testing of prepulishOnly hook",
+  "description": "Package for publishing of package with it's dependency with autoincrement of version",
   "main": "web/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
