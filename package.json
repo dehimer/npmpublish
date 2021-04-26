@@ -1,6 +1,6 @@
 {
   "name": "@dehimer/npmpublish",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Package for publishing of package with it's dependency with autoincrement of version",
   "main": "web/index.ts",
   "scripts": {
