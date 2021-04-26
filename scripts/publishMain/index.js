@@ -16,7 +16,7 @@ module.exports = async () => {
     const depPath = DEPENDENCY_PATH || argv.depPath;
     const depName = DEPENDENCY_NAME || argv.depName;
     const forcedMainVersion = typeof argv.mainVersion === 'string' ? argv.mainVersion : null;
-    const forcedDependencyVersion = typeof argv.depVerion === 'string' ? argv.depVerion : null;
+    const forcedDependencyVersion = typeof argv.depVersion === 'string' ? argv.depVersion : null;
 
     console.log('argv');
     console.log(argv);
