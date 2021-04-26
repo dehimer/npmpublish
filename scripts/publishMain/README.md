@@ -15,6 +15,10 @@ in package.json of main package you need to add next command to scripts:
 
 "publishNext": "node ../scripts/publishMain/index.js --mainPath=../mobile --depPath=../common --depName=commonnpmpublish"
 
+then you can run it by command:
+
+npm run publishNext -- --mainVersion=1.1.1 --depVersion=0.0.2
+
 There several arguments:
 - mainPath - path to main package itself
 - depPath - path to dependency package
