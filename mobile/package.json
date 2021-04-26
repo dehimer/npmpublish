@@ -1,11 +1,11 @@
 {
   "name": "mobilenpmpublish",
-  "version": "0.0.12-beta.30",
+  "version": "0.0.12-beta.31",
   "description": "MNP",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publishNext": "node ../scripts/publishMobile/index.js"
+    "publishNext": "node ../scripts/publishMain/index.js"
   },
   "author": "Denis Novikov",
   "license": "ISC",
