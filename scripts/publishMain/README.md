@@ -19,3 +19,5 @@ There several arguments:
 - mainPath - path to main package itself
 - depPath - path to dependency package
 - depName - name of dependency on npm (needed to update version of dependencies of main package)
+- mainVersion - forced version of main package for cases when you do not know is it free next version
+- depVersion - forced version of dependency package for cases when you do not know is it free next version

@@ -12,7 +12,8 @@ const removeTempDirectory = (dirPath) => rimraf(dirPath, () => console.log(`Dele
 module.exports = async ({
     mainPath,
     depPath,
-    depName
+    depName,
+    depVersion
 }) => {
     // do copy to temp folder
     copydir.sync(depPath, PREBUBLISH_PATH, {
@@ -26,7 +27,7 @@ module.exports = async ({
     });
 
     // increment version in temp folder
-    const nextDepVersion = increaseVersion(PREBUBLISH_PATH);
+    const nextDepVersion = increaseVersion(PREBUBLISH_PATH, depVersion);
     console.log('nextDepVersion:');
     console.log(nextDepVersion);
 

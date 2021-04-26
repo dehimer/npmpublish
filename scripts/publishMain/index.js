@@ -15,13 +15,19 @@ module.exports = async () => {
     const mainPath = MAIN_PATH || argv.mainPath;
     const depPath = DEPENDENCY_PATH || argv.depPath;
     const depName = DEPENDENCY_NAME || argv.depName;
+    const forcedMainVersion = typeof argv.mainVersion === 'string' ? argv.mainVersion : null;
+    const forcedDependencyVersion = typeof argv.depVerion === 'string' ? argv.depVerion : null;
 
     console.log('argv');
     console.log(argv);
+    console.log(`forcedMainVersion: ${forcedMainVersion}`);
+    console.log(`forcedDependencyVersion: ${forcedDependencyVersion}`);
+
     const nextCommonVersion = publishDependency({
         mainPath: mainPath,
         depPath: depPath,
-        depName: depName
+        depName: depName,
+        depVersion: forcedDependencyVersion
     })
 
     if (!nextCommonVersion) {
@@ -34,7 +40,7 @@ module.exports = async () => {
     fs.writeFileSync(`../${mainPath}/package.json`, JSON.stringify(mobilePackage, null, 2));
 
     // increment mobile version
-    increaseVersion(mainPath);
+    increaseVersion(mainPath, forcedMainVersion);
 
     // publish mobile
     await new Promise((resolve, reject) => {
