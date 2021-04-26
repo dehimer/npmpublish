@@ -1,6 +1,6 @@
 {
   "name": "mobilenpmpublish",
-  "version": "0.0.12-beta.41",
+  "version": "0.0.12-beta.57",
   "description": "MNP",
   "main": "index.ts",
   "scripts": {

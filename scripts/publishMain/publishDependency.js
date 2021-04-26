@@ -10,7 +10,9 @@ const PREBUBLISH_PATH = '../common-prepublish';
 const removeTempDirectory = (dirPath) => rimraf(dirPath, () => console.log(`Deleted ${dirPath}`))
 
 module.exports = async ({
-    depPath
+    mainPath,
+    depPath,
+    depName
 }) => {
     // do copy to temp folder
     copydir.sync(depPath, PREBUBLISH_PATH, {
@@ -29,16 +31,19 @@ module.exports = async ({
     console.log(nextDepVersion);
 
     // replace alias strings
+    const regexp = new RegExp(`${depName}\/.+\\/.injected`, 'g');
     const results = replaceInFile.sync({
         files: `${PREBUBLISH_PATH}/**`,
-        from: /\/common\/.+\/.injected/g,
+        from: regexp,
         to: (match) => {
-            return match.replace('/common/', '/mobile/platform/').replace('.injected', '');
+            console.log('match');
+            console.log(match);
+            return match.replace(depName, `${mainPath}/platform`).replace('.injected', '');
         },
         countMatches: true
     });
-
-    console.log(`Replaced aliases in ${results.length} files`);
+    console.log(`Replaced aliases for ${depName} in ${results.filter(({ hasChanged }) => hasChanged).length} files`);
+    console.log(results.filter(({ hasChanged }) => hasChanged));
 
     // publish from temp folder
     try {

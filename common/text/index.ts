@@ -1,1 +1,1 @@
-export * from '/common/text/.injected';
+export * from 'commonnpmpublish/text/.injected';

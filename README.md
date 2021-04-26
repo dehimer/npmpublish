@@ -3,7 +3,7 @@ NPM PUBLISH package needed to replace standard npm publish command with autorepl
 It's extends base functionality by nex features:
 - publishing dependency package that placed near to current package
 - autoincrement version dependency version
-- find and replace [depPath]/[pathToReplace]/.injected path to main [mainPath] 
+- find and replace [depPath]/[pathToReplace]/.injected path to main [mainPath]/platform 
 - publishing dependency to npm
 - increment dependency version in main package
 - increment main package version

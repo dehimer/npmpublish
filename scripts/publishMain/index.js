@@ -19,7 +19,9 @@ const DEPENDENCY_NAME = 'commonnpmpublish';
     console.log('argv');
     console.log(argv);
     const nextCommonVersion = publishDependency({
+        mainPath: mainPath,
         depPath: depPath,
+        depName: depName
     })
 
     if (!nextCommonVersion) {
