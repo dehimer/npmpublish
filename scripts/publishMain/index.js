@@ -1,22 +1,25 @@
 const fs = require('fs');
 const { exec } = require('child_process');
+const yargs = require('yargs');
 
 const increaseVersion = require('./increaseVersion');
 const publishDependency = require('./publishDependency');
 
-console.log('EAT BANANA, BE HAPPY');
-
-const COMMON_PATH = '../common';
-const MOBILE_PATH = '../mobile';
-const COMMON_NPMPUBLISH = 'commonnpmpublish';
-
-// commonPath
-// mobilePath
-// commonPacketName
+const MAIN_PATH = '../mobile';
+const DEPENDENCY_PATH = '../common';
+const DEPENDENCY_NAME = 'commonnpmpublish';
 
 (async () => {
+    const argv = yargs.argv;
+
+    const mainPath = MAIN_PATH || argv.mainPath;
+    const depPath = DEPENDENCY_PATH || argv.depPath;
+    const depName = DEPENDENCY_NAME || argv.depName;
+
+    console.log('argv');
+    console.log(argv);
     const nextCommonVersion = publishDependency({
-        commonPath: COMMON_PATH,
+        depPath: DEPENDENCY_PATH,
     })
 
     if (!nextCommonVersion) {
@@ -24,17 +27,17 @@ const COMMON_NPMPUBLISH = 'commonnpmpublish';
     }
 
     // set new common version to mobile
-    const mobilePackage = require(`../${MOBILE_PATH}/package.json`);
-    mobilePackage.dependencies[COMMON_NPMPUBLISH] = nextCommonVersion;
-    fs.writeFileSync(`../${MOBILE_PATH}/package.json`, JSON.stringify(mobilePackage, null, 2));
+    const mobilePackage = require(`../${MAIN_PATH}/package.json`);
+    mobilePackage.dependencies[DEPENDENCY_NAME] = nextCommonVersion;
+    fs.writeFileSync(`../${MAIN_PATH}/package.json`, JSON.stringify(mobilePackage, null, 2));
 
     // increment mobile version
-    increaseVersion(MOBILE_PATH);
+    increaseVersion(MAIN_PATH);
 
     // publish mobile
     await new Promise((resolve, reject) => {
         exec('npm publish', {
-            cwd: MOBILE_PATH
+            cwd: MAIN_PATH
         }, (error, stdout, stderr) => {
             if (error) {
                 console.warn(error);

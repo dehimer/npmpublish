@@ -1,6 +1,6 @@
 {
   "name": "commonnpmpublish",
-  "version": "0.0.17",
+  "version": "0.0.27",
   "description": "Common scripts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

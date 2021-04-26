@@ -5,15 +5,15 @@ const replaceInFile = require('replace-in-file');
 
 const increaseVersion = require('./increaseVersion');
 
-const COMMON_PREBUBLISH_PATH = '../common-prepublish';
+const PREBUBLISH_PATH = '../common-prepublish';
 
 const removeTempDirectory = (dirPath) => rimraf(dirPath, () => console.log(`Deleted ${dirPath}`))
 
 module.exports = async ({
-    commonPath
+    depPath
 }) => {
     // do copy to temp folder
-    copydir.sync(commonPath, COMMON_PREBUBLISH_PATH, {
+    copydir.sync(depPath, PREBUBLISH_PATH, {
         filter: function(stat, filepath){
             if (stat === 'directory' && filepath.includes('node_modules')) {
                 return false;
@@ -24,13 +24,13 @@ module.exports = async ({
     });
 
     // increment version in temp folder
-    const nextCommonVersion = increaseVersion(COMMON_PREBUBLISH_PATH);
-    console.log('nextCommonVersion:');
-    console.log(nextCommonVersion);
+    const nextDepVersion = increaseVersion(PREBUBLISH_PATH);
+    console.log('nextDepVersion:');
+    console.log(nextDepVersion);
 
     // replace alias strings
     const results = replaceInFile.sync({
-        files: `${COMMON_PREBUBLISH_PATH}/**`,
+        files: `${PREBUBLISH_PATH}/**`,
         from: /\/common\/.+\/.injected/g,
         to: (match) => {
             return match.replace('/common/', '/mobile/platform/').replace('.injected', '');
@@ -44,7 +44,7 @@ module.exports = async ({
     try {
         await new Promise((resolve, reject) => {
             exec('npm publish', {
-                cwd: COMMON_PREBUBLISH_PATH
+                cwd: PREBUBLISH_PATH
             }, (error, stdout, stderr) => {
                 if (error) {
                     console.warn(error);
@@ -62,15 +62,15 @@ module.exports = async ({
         console.warn('Another case - you run it through yarn. Use "npm run" instead.');
 
         // remove temp folder
-        removeTempDirectory(COMMON_PREBUBLISH_PATH);
+        removeTempDirectory(PREBUBLISH_PATH);
         return null;
     }
 
     // remove temp folder
-    removeTempDirectory(COMMON_PREBUBLISH_PATH);
+    removeTempDirectory(PREBUBLISH_PATH);
 
     // apply published version to real common package
-    increaseVersion(commonPath, nextCommonVersion);
+    increaseVersion(depPath, nextDepVersion);
 
-    return nextCommonVersion;
+    return nextDepVersion;
 }

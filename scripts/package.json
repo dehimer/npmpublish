@@ -15,6 +15,7 @@
     "package-local-publisher": "^0.0.1-develop-397c505e",
     "replace-in-file": "^6.2.0",
     "rimraf": "^3.0.2",
-    "semver": "^7.3.5"
+    "semver": "^7.3.5",
+    "yargs": "^16.2.0"
   }
 }
